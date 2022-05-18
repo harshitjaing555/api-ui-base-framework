@@ -1,0 +1,26 @@
+1. Read X
+2. Read Y
+3. If X>0 THEN
+4.    If Y>0 THEN  
+5.	   Print "Positive"
+6.	  ENDIF
+7. ENDIF
+8. IF X<0 THEN 
+9.    Print "Negative"
+10.ENDIF
+
+For Full Statement coverage:- We need to execute test cases which covers atleast each statement once.
+For Branch coverage :- We need to check all the decision making blocks with both conditions of true and false
+For Path coverage:- All the paths needs to be covered atleast once for each condition.
+
+1. Case 1  :: X=1 and Y=1
+   total 9 statements got executed-->  1-2-3-4-5-6-7-8-10
+   
+2. Case 2  :: X=-1
+   total 7 statements got executed --> 1-2-3-7-8-9-10
+
+3. Case 3 :: X=1 and Y =0
+   1-2-3-4-6-7-8-10
+
+4. Case 4 ::  X=0
+    1-2-3-7-8-10
