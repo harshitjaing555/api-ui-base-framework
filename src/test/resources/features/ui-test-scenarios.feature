@@ -19,7 +19,7 @@ Feature: UI test scenarios
       """
     And Error message should be in red color
 
-  @UI @Regression  
+  @UI @Regression   @Test
   Scenario: Verify error message is displayed on adding a computer by entering invalid introduced date
     When user clicks on Add a new computer button
     And user enters computer name and invalid introduction date
@@ -30,7 +30,7 @@ Feature: UI test scenarios
       """
     And Error message should be in red color
 
-  @UI @Regression
+  @UI @Regression 
   Scenario: User should be able to delete computer
     When user selects any computer from computer name list
     Then user lands on Edit computer page
