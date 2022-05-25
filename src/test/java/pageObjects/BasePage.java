@@ -15,11 +15,12 @@ import io.restassured.specification.RequestSpecification;
 import utils.PropFileHandler;
 
 public class BasePage {
-	
+
 	static PropFileHandler propFileHandler = new PropFileHandler();
-//	public String BASE_URL = propFileHandler.readProperty("appUrl").toString();
-	private static String BASE_URL ="https://computer-database.gatling.io/computers";
-	
+	//	public String BASE_URL = propFileHandler.readProperty("appUrl").toString();
+	//	private static String BASE_URL ="https://computer-database.gatling.io/computers";
+	private static String BASE_URL ="https://fakerestapi.azurewebsites.net";
+
 	RequestSpecification requestSpecification;
 	Response response;
 
