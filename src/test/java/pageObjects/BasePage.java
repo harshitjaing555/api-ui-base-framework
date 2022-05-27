@@ -40,53 +40,68 @@ public class BasePage {
 
 	public static void initializeBrowser() {
 		execution =propFileHandler.readProperty("executionMode").toUpperCase();
-		System.out.println(execution);
+		browser=propFileHandler.readProperty("browser").toUpperCase();
+		timeout=propFileHandler.readProperty("timeOut");
 		if(execution.equals("LOCAL"))
 		{
-				System.out.println("**************************************** Session Started *****************************************");
-				timeout=propFileHandler.readProperty("timeOut");
-				browser=propFileHandler.readProperty("browser").toUpperCase();
-				if(browser.equals("CHROME"))
-				{
-					System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-					driver = new ChromeDriver();
-					driver.manage().timeouts().implicitlyWait(Integer.valueOf(timeout), TimeUnit.SECONDS);
-					driver.manage().window().maximize();
-				}
-				else if(browser.equals("FIREFOX"))
-				{
-					System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
-					driver = new FirefoxDriver();
-					driver.manage().timeouts().implicitlyWait(Integer.valueOf(timeout), TimeUnit.SECONDS);
-					driver.manage().window().maximize();
-				}
-				else if(browser.equals("EDGE"))
-				{
-					System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
-					driver = new EdgeDriver();
-					driver.manage().timeouts().implicitlyWait(Integer.valueOf(timeout), TimeUnit.SECONDS);
-					driver.manage().window().maximize();
-				}
+			System.out.println("**************************************** Session Started *****************************************");
+			if(browser.equals("CHROME"))
+			{
+				System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+				driver = new ChromeDriver();
+			}
+			else if(browser.equals("FIREFOX"))
+			{
+				System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
+				driver = new FirefoxDriver();
+			}
+			else if(browser.equals("EDGE"))
+			{
+				System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
+				driver = new EdgeDriver();
+			}
+			driver.manage().timeouts().implicitlyWait(Integer.valueOf(timeout), TimeUnit.SECONDS);
+			
 		}
 
 		else if(execution.equals("REMOTE"))
 		{
-		try {
-			System.out.println("**************************************** Session Started *****************************************");
+			execution =propFileHandler.readProperty("executionMode").toUpperCase();
 			nodeUrl = propFileHandler.readProperty("nodeUrl");
-			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-			capabilities.setBrowserName("chrome");
-			capabilities.setPlatform(Platform.WINDOWS);
-			driver = new RemoteWebDriver(new URL(nodeUrl), capabilities);
-			driver.manage().window().maximize();
-		} 
-		catch (MalformedURLException e) {
+			if(browser.equals("CHROME"))
+			{
+				try {
+					System.out.println("**************************************** Session Started *****************************************");
+					DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+					capabilities.setBrowserName("chrome");
+					capabilities.setPlatform(Platform.WINDOWS);
+					driver = new RemoteWebDriver(new URL(nodeUrl), capabilities);
+				} 
+				catch (MalformedURLException e) {
 
-			e.printStackTrace();
-		}
+					e.printStackTrace();
+				}
+			}
+			else if(browser.equals("FIREFOX"))
+			{
+				try {
+					System.out.println("**************************************** Session Started *****************************************");
+					DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+//					capabilities.setBrowserName("firefox");
+					capabilities.setPlatform(Platform.WINDOWS);
+					driver = new RemoteWebDriver(new URL(nodeUrl), capabilities);
+				} 
+				catch (MalformedURLException e) {
+
+					e.printStackTrace();
+				}
+			}
 		}
 
+		driver.manage().window().maximize();
 	}
+
+
 
 	public static byte[] takeScreenshot()
 	{
