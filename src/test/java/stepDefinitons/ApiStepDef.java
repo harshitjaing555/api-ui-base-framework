@@ -25,7 +25,6 @@ public class ApiStepDef {
 	@When("User hits the get api with parameter {string} {string}")
 	public void user_hits_get_request_with_parameters(String uri, String parameter) {
 		String args = uri.toString()+parameter.toString();
-		System.out.println("******"+ args);
 		response = basePage.getRequest(args);
 	}
 

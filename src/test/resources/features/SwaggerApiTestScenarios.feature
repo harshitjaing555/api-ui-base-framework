@@ -1,6 +1,6 @@
 Feature: Swagger API Test Scenarios
 
-  @Swagger @Get
+  @Get
   Scenario Outline: Verify application is up and running
     When User hits the application url
     Then User validate response code as <code>
@@ -10,7 +10,7 @@ Feature: Swagger API Test Scenarios
       | code | text       |
       |  200 | Swagger UI |
 
-  @Swagger @Get @AA
+  @Get
   Scenario Outline: User should get 200 on hitting valid Activity, Author, Books, CoverPhotos, Users
     When User hits the get api using end point "<uri>"
     Then User validate response code as <code>
@@ -24,7 +24,7 @@ Feature: Swagger API Test Scenarios
       | /api/v1/CoverPhotos/1 |  200 |            1 |
       | /api/v1/Users/1       |  200 | Password1    |
 
-  @Swagger @Get @BB
+  @Get
   Scenario Outline: User should get 404 on hitting invalid Activity, Author, Books, CoverPhotos, Users
     When User hits the get api using end point "<uri>"
     Then User validate response code as <code>
@@ -38,7 +38,7 @@ Feature: Swagger API Test Scenarios
       | /api/v1/CoverPhotos/201 |  404 | Not Found |
       | /api/v1/Users/11        |  404 | Not Found |
 
-  @Swagger @Get @CC
+  @Get 
   Scenario Outline: User should be able to use parameter to hit the Activity, Author, Books, CoverPhotos, Users
     When User hits the get api with parameter "<uri>" "<parameter>"
     Then User validate response code as <code>
