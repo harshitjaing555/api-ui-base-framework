@@ -22,6 +22,11 @@ public class ApiStepDef {
 	public void user_hits_get_request(String uri) {
 		response = basePage.getRequest(uri);
 	}
+	@When("User hits the get api with parameter {string} {string}")
+	public void user_hits_get_request_with_parameters(String uri, String parameter) {
+		String args = uri.toString()+parameter.toString();
+		response = basePage.getRequest(args);
+	}
 
 	@When("User hits the delete api using end point {string}")
 	public void user_hits_delete_request(String uri) {
