@@ -2,14 +2,13 @@ package stepDefinitons;
 
 import org.json.JSONObject;
 import org.junit.Assert;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.response.Response;
 import pageObjects.BasePage;
 
-public class ApiStepDef {
-	Response response;
+public class ApiStepDef extends BasePage {
 	JSONObject jsonObject;
 	BasePage basePage = new BasePage();
 
