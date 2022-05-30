@@ -3,6 +3,7 @@ package pageObjects;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+
 import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,7 +14,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -23,6 +23,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utils.PropFileHandler;
 
+
 public class BasePage {
 
 	static PropFileHandler propFileHandler = new PropFileHandler();
@@ -30,7 +31,7 @@ public class BasePage {
 	private static String BASE_URL ="https://computer-database.gatling.io/computers";
 
 	RequestSpecification requestSpecification;
-	Response response;
+	protected static Response response;
 
 	public static WebDriver driver;
 	public static String browser;
